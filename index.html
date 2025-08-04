@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ever Bloom - Jasmine Collection</title>
+    <meta name="description" content="Luxury cosmetics inspired by the elegance and purity of jasmine. Discover natural beauty with Ever Bloom's premium formulations.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="public/favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header glass-effect">
+        <div class="container">
+            <nav class="nav">
+                <!-- Logo -->
+                <div class="logo animate-fade-in">
+                    Ever Bloom
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="nav-desktop animate-fade-in">
+                    <button class="nav-link" data-section="about">About</button>
+                    <button class="nav-link" data-section="product">Product</button>
+                    <button class="nav-link" data-section="contact">Contact</button>
+                    <button class="btn btn-elegant btn-sm">Shop Now</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i data-lucide="menu"></i>
+                </button>
+            </nav>
+
+            <!-- Mobile Navigation -->
+            <div class="nav-mobile" id="mobileNav">
+                <div class="nav-mobile-content">
+                    <button class="nav-link" data-section="about">About</button>
+                    <button class="nav-link" data-section="product">Product</button>
+                    <button class="nav-link" data-section="contact">Contact</button>
+                    <button class="btn btn-elegant btn-sm">Shop Now</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Background Image -->
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="hero-content">
+            <h1 class="hero-title animate-fade-in-up">
+                Ever Bloom
+                <span class="hero-subtitle">Jasmine Collection</span>
+            </h1>
+            
+            <p class="hero-description animate-fade-in-up" style="animation-delay: 0.2s;">
+                Discover natural elegance with our luxury cosmetics inspired by the purity and sophistication of jasmine
+            </p>
+
+            <div class="hero-buttons animate-fade-in-up" style="animation-delay: 0.4s;">
+                <button class="btn btn-hero btn-lg shadow-glow" data-section="product">
+                    Explore Collection
+                </button>
+                <button class="btn btn-elegant btn-lg">
+                    Learn More
+                </button>
+            </div>
+        </div>
+
+        <!-- Floating Elements -->
+        <div class="floating-element floating-1"></div>
+        <div class="floating-element floating-2"></div>
+        <div class="floating-element floating-3"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <!-- Background Pattern -->
+        <div class="about-pattern"></div>
+        
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title animate-fade-in-up">
+                    About Us
+                </h2>
+                
+                <div class="about-text animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <p>
+                        Ever Bloom is a luxury cosmetics brand inspired by the elegance and purity of jasmine. 
+                        Our mission is to create beauty products that not only enhance but also nourish.
+                    </p>
+                    
+                    <p>
+                        Crafted with natural ingredients and infused with jasmine essence, our line combines 
+                        quality with sophistication. Each product is meticulously developed to deliver 
+                        exceptional results while celebrating the timeless beauty of nature.
+                    </p>
+                    
+                    <p>
+                        We believe that true beauty comes from within, and our products are designed to 
+                        enhance your natural radiance while providing luxurious self-care experiences.
+                    </p>
+                </div>
+
+                <!-- Feature Cards -->
+                <div class="features-grid">
+                    <div class="feature-card animate-scale-in" style="animation-delay: 0.4s;">
+                        <div class="feature-icon">
+                            <span>🌸</span>
+                        </div>
+                        <h3>Natural Ingredients</h3>
+                        <p>Premium botanical extracts for pure, effective formulations</p>
+                    </div>
+
+                    <div class="feature-card animate-scale-in" style="animation-delay: 0.6s;">
+                        <div class="feature-icon">
+                            <span>✨</span>
+                        </div>
+                        <h3>Luxury Quality</h3>
+                        <p>Meticulously crafted products that deliver exceptional results</p>
+                    </div>
+
+                    <div class="feature-card animate-scale-in" style="animation-delay: 0.8s;">
+                        <div class="feature-icon">
+                            <span>💖</span>
+                        </div>
+                        <h3>Sustainable Beauty</h3>
+                        <p>Environmentally conscious practices for a better tomorrow</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section id="product" class="product gradient-secondary">
+        <div class="container">
+            <div class="product-content">
+                <h2 class="section-title animate-fade-in-up">
+                    Our Product
+                </h2>
+
+                <div class="product-grid">
+                    <!-- Product Image -->
+                    <div class="product-image-container animate-slide-in-left">
+                        <div class="product-image-wrapper">
+                            <div class="product-image-bg"></div>
+                            <img 
+                                src="assets/product-hero.jpg"
+                                alt="Ever Bloom Lip and Cheek Tint"
+                                class="product-image"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Product Details -->
+                    <div class="product-details animate-slide-in-right">
+                        <h3 class="product-title">
+                            Lip and Cheek Tint
+                        </h3>
+                        
+                        <p class="product-description">
+                            Discover natural elegance with Ever Bloom's Jasmine Collection. The XIN Lip and Cheek Tint 
+                            delivers a radiant flush of color with a lightweight, long-lasting formula enriched with 
+                            jasmine essence.
+                        </p>
+
+                        <!-- Features -->
+                        <div class="product-features">
+                            <div class="feature-item">
+                                <div class="feature-bullet"></div>
+                                <div>
+                                    <h4>Long-lasting Formula</h4>
+                                    <p>Up to 8 hours of vibrant color that won't fade</p>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-bullet"></div>
+                                <div>
+                                    <h4>Jasmine Enriched</h4>
+                                    <p>Infused with pure jasmine essence for nourishment</p>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-bullet"></div>
+                                <div>
+                                    <h4>Versatile Application</h4>
+                                    <p>Perfect for both lips and cheeks for a natural flush</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Specs -->
+                        <div class="product-specs">
+                            <h4>Product Details</h4>
+                            <div class="specs-grid">
+                                <div>
+                                    <span class="spec-label">Volume:</span>
+                                    <span class="spec-value">10ml</span>
+                                </div>
+                                <div>
+                                    <span class="spec-label">Shade:</span>
+                                    <span class="spec-value">ELLE</span>
+                                </div>
+                                <div>
+                                    <span class="spec-label">Type:</span>
+                                    <span class="spec-value">Liquid Tint</span>
+                                </div>
+                                <div>
+                                    <span class="spec-label">Finish:</span>
+                                    <span class="spec-value">Natural Matte</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTA Button -->
+                        <div class="product-cta">
+                            <button class="btn btn-hero btn-lg">
+                                Buy Now - $28.00
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <!-- Background Elements -->
+        <div class="contact-bg-elements">
+            <div class="bg-element bg-element-1"></div>
+            <div class="bg-element bg-element-2"></div>
+        </div>
+
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title animate-fade-in-up">
+                    Get In Touch
+                </h2>
+
+                <div class="contact-grid">
+                    <!-- Contact Info -->
+                    <div class="contact-info animate-slide-in-left">
+                        <div class="contact-intro">
+                            <h3>Let's Connect</h3>
+                            <p>
+                                We'd love to hear from you. Whether you have questions about our products, 
+                                need skincare advice, or want to share your Ever Bloom experience, 
+                                we're here to help.
+                            </p>
+                        </div>
+
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="contact-icon">
+                                    <i data-lucide="mail"></i>
+                                </div>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p>hello@everbloom.com</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-method">
+                                <div class="contact-icon">
+                                    <i data-lucide="phone"></i>
+                                </div>
+                                <div>
+                                    <h4>Phone</h4>
+                                    <p>+1 (555) 123-4567</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-method">
+                                <div class="contact-icon">
+                                    <i data-lucide="map-pin"></i>
+                                </div>
+                                <div>
+                                    <h4>Address</h4>
+                                    <p>123 Beauty Street, Cosmetics City, CC 12345</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Links -->
+                        <div class="social-links">
+                            <h4>Follow Us</h4>
+                            <div class="social-buttons">
+                                <button class="btn btn-outline btn-icon">
+                                    <span>fb</span>
+                                </button>
+                                <button class="btn btn-outline btn-icon">
+                                    <span>ig</span>
+                                </button>
+                                <button class="btn btn-outline btn-icon">
+                                    <span>tw</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="contact-form-container animate-slide-in-right">
+                        <form class="contact-form glass-effect" id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    required
+                                    placeholder="Enter your name"
+                                />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    required
+                                    placeholder="Enter your email"
+                                />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    required
+                                    rows="6"
+                                    placeholder="Tell us how we can help you..."
+                                ></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-hero btn-lg">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer gradient-primary">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Ever Bloom</h3>
+                    <p>
+                        Luxury cosmetics inspired by the elegance and purity of jasmine. 
+                        Enhancing natural beauty with premium, sustainable formulations.
+                    </p>
+                    <div class="footer-social">
+                        <button class="social-btn">
+                            <span>fb</span>
+                        </button>
+                        <button class="social-btn">
+                            <span>ig</span>
+                        </button>
+                        <button class="social-btn">
+                            <span>tw</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#product">Our Products</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="footer-bottom">
+                <p>
+                    © 2024 Ever Bloom. All rights reserved. Crafted with ❤️ for natural beauty.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
