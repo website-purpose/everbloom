@@ -8,6 +8,17 @@ const contactForm = document.getElementById('contactForm');
 const navLinks = document.querySelectorAll('.nav-link');
 const scrollButtons = document.querySelectorAll('[data-section]');
 
+// Carousel Elements
+const carouselTrack = document.getElementById('carouselTrack');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const indicators = document.querySelectorAll('.indicator');
+
+// Carousel State
+let currentSlide = 0;
+const totalSlides = 3;
+let isTransitioning = false;
+
 // Mobile Menu Toggle
 function toggleMobileMenu() {
     mobileNav.classList.toggle('active');
@@ -43,12 +54,13 @@ function scrollToSection(sectionId) {
 // Header Scroll Effect
 function handleHeaderScroll() {
     const header = document.querySelector('.header');
+    header.style.background = 'hsla(30 25% 85% / 0.95)';
+    header.style.backdropFilter = 'blur(10px)';
     if (window.scrollY > 100) {
-        header.style.background = 'hsla(30 25% 85% / 0.95)';
-        header.style.backdropFilter = 'blur(10px)';
+       
     } else {
-        header.style.background = 'transparent';
-        header.style.backdropFilter = 'none';
+        // header.style.background = 'transparent';
+        // header.style.backdropFilter = 'none';
     }
 }
 
@@ -170,20 +182,194 @@ function handleParallax() {
     });
 }
 
-// Product Image Hover Effect
-function setupProductImageHover() {
-    const productImage = document.querySelector('.product-image');
-    const productImageBg = document.querySelector('.product-image-bg');
+// Product Carousel Functions
+function updateCarousel() {
+    if (isTransitioning || !carouselTrack) return;
     
-    if (productImage && productImageBg) {
-        productImage.addEventListener('mouseenter', () => {
-            productImageBg.style.transform = 'rotate(5deg) scale(1.02)';
-        });
-        
-        productImage.addEventListener('mouseleave', () => {
-            productImageBg.style.transform = 'rotate(3deg) scale(1)';
-        });
+    isTransitioning = true;
+    
+    // Calculate transform position
+    // Each slide is 1/3 of track width, so we move by (100/3)% per slide
+    const slidePercentage = 100 / totalSlides; // 33.33%
+    const translateX = -(currentSlide * slidePercentage);
+    
+    // Apply transform to track
+    carouselTrack.style.transform = `translateX(${translateX}%)`;
+    
+    // Update indicators
+    indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentSlide);
+    });
+    
+    // Update navigation buttons
+    if (prevBtn && nextBtn) {
+        prevBtn.disabled = currentSlide === 0;
+        nextBtn.disabled = currentSlide === totalSlides - 1;
     }
+    
+    // Add animation effect to current slide
+    setTimeout(() => {
+        const slides = document.querySelectorAll('.carousel-slide');
+        const activeSlide = slides[currentSlide];
+        
+        if (activeSlide) {
+            const productImage = activeSlide.querySelector('.product-image');
+            const productImageBg = activeSlide.querySelector('.product-image-bg');
+            
+            if (productImage && productImageBg) {
+                productImageBg.style.transform = 'rotate(5deg) scale(1.02)';
+                setTimeout(() => {
+                    productImageBg.style.transform = 'rotate(3deg) scale(1)';
+                }, 300);
+            }
+        }
+    }, 300);
+    
+    setTimeout(() => {
+        isTransitioning = false;
+    }, 600);
+}
+
+function nextSlide() {
+    if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateCarousel();
+    }
+}
+
+function prevSlide() {
+    if (currentSlide > 0) {
+        currentSlide--;
+        updateCarousel();
+    }
+}
+
+function goToSlide(slideIndex) {
+    if (slideIndex >= 0 && slideIndex < totalSlides && slideIndex !== currentSlide) {
+        currentSlide = slideIndex;
+        updateCarousel();
+    }
+}
+
+// Auto-play carousel
+let autoPlayInterval;
+
+function startAutoPlay() {
+    autoPlayInterval = setInterval(() => {
+        // Move to next slide, or loop back to first slide
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateCarousel();
+    }, 5000); // Change slide every 5 seconds
+}
+
+function stopAutoPlay() {
+    if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = null;
+    }
+}
+
+// Setup carousel event listeners
+function setupCarousel() {
+    // Check if carousel elements exist
+    if (!carouselTrack) {
+        console.warn('Carousel track not found');
+        return;
+    }
+    
+    // Navigation buttons
+    if (prevBtn) {
+        prevBtn.addEventListener('click', prevSlide);
+    } else {
+        console.warn('Previous button not found');
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', nextSlide);
+    } else {
+        console.warn('Next button not found');
+    }
+    
+    // Indicators
+    if (indicators.length > 0) {
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => goToSlide(index));
+        });
+    } else {
+        console.warn('Carousel indicators not found');
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevSlide();
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+        }
+    });
+    
+    // Touch/swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    if (carouselTrack) {
+        carouselTrack.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        carouselTrack.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+    }
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Swipe left - next slide
+                nextSlide();
+            } else {
+                // Swipe right - prev slide
+                prevSlide();
+            }
+        }
+    }
+    
+    // Pause auto-play on hover
+    const carouselContainer = document.querySelector('.carousel-container');
+    if (carouselContainer) {
+        carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+        carouselContainer.addEventListener('mouseleave', startAutoPlay);
+    }
+    
+    // Initialize carousel with a small delay to ensure DOM is ready
+    setTimeout(() => {
+        updateCarousel();
+        startAutoPlay();
+    }, 100);
+}
+
+// Product Image Hover Effect (updated for carousel)
+function setupProductImageHover() {
+    const productImages = document.querySelectorAll('.product-image');
+    const productImageBgs = document.querySelectorAll('.product-image-bg');
+    
+    productImages.forEach((productImage, index) => {
+        const productImageBg = productImageBgs[index];
+        
+        if (productImage && productImageBg) {
+            productImage.addEventListener('mouseenter', () => {
+                productImageBg.style.transform = 'rotate(5deg) scale(1.02)';
+            });
+            
+            productImage.addEventListener('mouseleave', () => {
+                productImageBg.style.transform = 'rotate(3deg) scale(1)';
+            });
+        }
+    });
 }
 
 // Smooth Scroll for Navigation Links
@@ -263,6 +449,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupSmoothScroll();
     setupAnimations();
     setupProductImageHover();
+    setupCarousel();
     addNotificationStyles();
     
     // Scroll event listeners
