@@ -103,21 +103,6 @@ body {
     transition: var(--transition-bounce);
 }
 
-.glass-effect {
-    backdrop-filter: blur(20px);
-    background: hsl(30 25% 85% / 0.15);
-    border: 1px solid hsl(30 25% 85% / 0.2);
-    box-shadow: 0 8px 32px hsl(8 95% 31% / 0.1);
-    transition: var(--transition-smooth);
-}
-
-.glass-effect:hover {
-    background: hsl(30 25% 85% / 0.2);
-    border-color: hsl(30 25% 85% / 0.3);
-    box-shadow: 0 12px 40px hsl(8 95% 31% / 0.15);
-    transform: translateY(-2px);
-}
-
 /* Animations */
 @keyframes fade-in {
     0% {
@@ -314,7 +299,6 @@ body {
 }
 
 .btn-elegant {
-    background: transparent;
     color: var(--primary);
     border: 2px solid var(--primary);
     position: relative;
@@ -424,13 +408,7 @@ body {
     backdrop-filter: blur(20px);
     background: hsl(30 25% 85% / 0.1);
     border-bottom: 1px solid hsl(30 25% 85% / 0.2);
-}
-
-.header{
     background: hsl(30 25% 85% / 0.95);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 4px 20px hsl(8 95% 31% / 0.1);
-    border-bottom: 1px solid hsl(30 25% 85% / 0.3);
 }
 
 .nav {
