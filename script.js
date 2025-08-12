@@ -54,13 +54,10 @@ function scrollToSection(sectionId) {
 // Header Scroll Effect
 function handleHeaderScroll() {
     const header = document.querySelector('.header');
-    header.style.background = 'hsla(30 25% 85% / 0.95)';
-    header.style.backdropFilter = 'blur(10px)';
-    if (window.scrollY > 100) {
-       
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
     } else {
-        // header.style.background = 'transparent';
-        // header.style.backdropFilter = 'none';
+        header.classList.remove('scrolled');
     }
 }
 
