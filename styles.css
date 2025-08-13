@@ -299,7 +299,7 @@ body {
 }
 
 .btn-elegant {
-    color: var(--primary);
+    color: var(--border);
     border: 2px solid var(--primary);
     position: relative;
     overflow: hidden;
@@ -323,6 +323,38 @@ body {
 }
 
 .btn-elegant:hover {
+    background: var(--primary);
+    color: var(--primary-foreground);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+.btn-elegant-shop {
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-elegant-shop::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--gradient-primary);
+    transition: var(--transition-smooth);
+    z-index: -1;
+}
+
+.btn-elegant-shop:hover::before {
+    width: 100%;
+}
+
+.btn-elegant-shop:hover {
     background: var(--primary);
     color: var(--primary-foreground);
     border-color: var(--primary);
@@ -1002,7 +1034,7 @@ body {
     position: absolute;
     inset: 0;
     opacity: 0.05;
-    background-image: url('src/assets/jasmine-pattern.jpg');
+    background-image: url('assets/jasmine-pattern.jpg');
     background-size: cover;
 }
 
@@ -1327,6 +1359,10 @@ body {
 }
 
 /* Contact Section */
+
+.contact-form-container{
+    display:none;
+}
 .contact {
     padding: 5rem 0;
     position: relative;
