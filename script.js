@@ -256,7 +256,7 @@ function startAutoPlay() {
         // Move to next slide, or loop back to first slide
         currentSlide = (currentSlide + 1) % totalSlides;
         updateCarousel();
-    }, 5000); // Change slide every 5 seconds
+    }, 20000); // Change slide every 5 seconds
 }
 
 function stopAutoPlay() {
