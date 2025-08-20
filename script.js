@@ -37,13 +37,15 @@ function toggleMobileMenu() {
 
 // Smooth Scroll Function
 function scrollToSection(sectionId) {
+    if(sectionId === 'feedback'){
+        window.location="feedback.html"
+    }
     const element = document.getElementById(sectionId);
     if (element) {
         element.scrollIntoView({ 
             behavior: 'smooth',
             block: 'start'
         });
-        
         // Close mobile menu if open
         if (mobileNav.classList.contains('active')) {
             toggleMobileMenu();

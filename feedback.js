@@ -6,6 +6,8 @@ emailjs.init("YOUR_EMAILJS_USER_ID"); // Replace with your actual EmailJS User I
 
 // DOM Elements
 const stars = document.querySelectorAll('.star');
+const faStar = document.querySelectorAll('.fa-star');
+// const iconRating = 
 const ratingText = document.getElementById('ratingText');
 const tags = document.querySelectorAll('.tag');
 const feedbackText = document.getElementById('feedbackText');
@@ -31,6 +33,7 @@ const ratingDescriptions = {
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', function() {
+
     setupStarRating();
     setupFeedbackTags();
     setupTextarea();
@@ -42,7 +45,10 @@ document.addEventListener('DOMContentLoaded', function() {
 // Star Rating System
 function setupStarRating() {
     stars.forEach((star, index) => {
-        star.addEventListener('click', () => selectRating(index + 1));
+        // console.log('star',star);
+        // console.log('index',index);
+        
+        star.addEventListener('click', () => selectRating(index));
         star.addEventListener('mouseenter', () => previewRating(index + 1));
         star.addEventListener('mouseleave', () => clearPreview());
     });
@@ -50,14 +56,16 @@ function setupStarRating() {
 
 function selectRating(rating) {
     selectedRating = rating;
+
     updateStarDisplay();
     updateRatingText();
     updateSubmitButton();
     
     // Add animation to selected star
-    const selectedStar = stars[rating - 1];
+    const selectedStar = stars[rating];
+    console.log('selectedStar',selectedStar.classList)
     selectedStar.classList.add('active');
-    
+
     setTimeout(() => {
         selectedStar.classList.remove('active');
     }, 600);
@@ -79,11 +87,13 @@ function clearPreview() {
 
 function updateStarDisplay(rating = selectedRating) {
     stars.forEach((star, index) => {
-        if (index < rating) {
-            star.classList.add('filled');
-        } else {
-            star.classList.remove('filled');
-        }
+        // if (index < rating) {
+        //     star.classList.remove('fa-solid fa-star fa-lg');
+        //     star.classList.add('fa-regular fa-star fa-lg');
+        // } else {
+        //     star.classList.add('fa-solid fa-star fa-lg');
+        //     star.classList.remove('fa-regular fa-star fa-lg');
+        // }
     });
 }
 
