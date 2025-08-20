@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - Everbloom</title>
+    <link rel="stylesheet" href="feedback-styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header glass-effect">
+        <div class="container">
+            <nav class="nav">
+                <!-- Logo -->
+                <div class="logo animate-fade-in">
+                    <img src="assets/everbloom-logo.png" alt="Ever Bloom Logo" class="logo-image">
+                    <span class="logo-text">Ever Bloom</span>
+                </div>
+                <!-- Desktop Navigation -->
+                <div class="nav-desktop animate-fade-in">
+                
+                    <button class="btn btn-elegant-shop btn-sm">Shop Now</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i data-lucide="menu"></i>
+                </button>
+            </nav>
+
+            <!-- Mobile Navigation -->
+            <div class="nav-mobile" id="mobileNav">
+                <div class="nav-mobile-content">
+                    <button class="btn btn-elegant btn-sm">Shop Now</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Feedback Form -->
+            <section class="feedback-section">
+                <div class="feedback-card">
+                    <div class="feedback-header">
+                        <h2 class="feedback-title">Rate Your Experience</h2>
+                        <p class="feedback-description">Help us improve by sharing your feedback. Your opinion matters to us!</p>
+                        <p class="feedback-description">How would you rate your overall experience with Everbloom?</p>
+                    </div>
+
+                    <!-- Star Rating -->
+                    <div class="rating-container">
+                        <div class="stars" id="stars">
+                            <div class="star" data-rating="1">
+                                <i data-lucide="star"></i>
+                            </div>
+                            <div class="star" data-rating="2">
+                                <i data-lucide="star"></i>
+                            </div>
+                            <div class="star" data-rating="3">
+                                <i data-lucide="star"></i>
+                            </div>
+                            <div class="star" data-rating="4">
+                                <i data-lucide="star"></i>
+                            </div>
+                            <div class="star" data-rating="5">
+                                <i data-lucide="star"></i>
+                            </div>
+                        </div>
+                        <div class="rating-text" id="ratingText">Select a rating</div>
+                    </div>
+
+                    <!-- Quick Feedback Tags -->
+                    <div class="feedback-tags">
+                        <h3 class="tags-title">Quick Feedback</h3>
+                        <p class="tags-description">Select any that apply (optional)</p>
+                        <div class="tags-container" id="tagsContainer">
+                            <button class="tag" data-tag="Fast">Fast</button>
+                            <button class="tag" data-tag="Easy">Easy</button>
+                            <button class="tag" data-tag="Buggy">Buggy</button>
+                            <button class="tag" data-tag="Beautiful">Beautiful</button>
+                            <button class="tag" data-tag="Confusing">Confusing</button>
+                            <button class="tag" data-tag="Helpful">Helpful</button>
+                            <button class="tag" data-tag="Slow">Slow</button>
+                            <button class="tag" data-tag="Intuitive">Intuitive</button>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Feedback -->
+                    <div class="feedback-detail">
+                        <h3 class="detail-title">Additional Comments</h3>
+                        <p class="detail-description">Share more details about your experience (optional)</p>
+                        <div class="textarea-container">
+                            <textarea 
+                                id="feedbackText" 
+                                class="feedback-textarea" 
+                                placeholder="Tell us more about your experience..."
+                                maxlength="500"
+                            ></textarea>
+                            <div class="char-counter">
+                                <span id="charCount">0</span>/500
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="submit-container">
+                        <button class="submit-btn" id="submitBtn" disabled>
+                            <span class="btn-text">Submit Feedback</span>
+                            <span class="btn-loading" style="display: none;">
+                                <i data-lucide="loader-2" class="spinner"></i>
+                                Sending...
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal">
+            <div class="modal-header">
+                <i data-lucide="check-circle" class="success-icon"></i>
+                <h3 class="modal-title">Thank You!</h3>
+            </div>
+            <div class="modal-content">
+                <p>Your feedback has been submitted successfully. We appreciate you taking the time to share your experience!</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-secondary" onclick="closeSuccessModal()">Close</button>
+                <button class="btn-primary" onclick="resetForm()">Submit Another</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer"></div>
+
+    <script src="feedback.js"></script>
+</body>
+</html> 
