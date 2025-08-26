@@ -1,8 +1,14 @@
 // Initialize Lucide icons
 lucide.createIcons();
 
+const emailSettings = {
+    serviceId: 'service_hdzypdf',
+    templateId: 'template_0mmoz5o', 
+    publicKey: 'xfooa-RHz07D3dGoh'
+};
+
 // Initialize EmailJS
-emailjs.init("YOUR_EMAILJS_USER_ID"); // Replace with your actual EmailJS User ID
+emailjs.init(emailSettings.publicKey); // Replace with your actual EmailJS User ID
 
 // DOM Elements
 const stars = document.querySelectorAll('.star');
@@ -206,21 +212,17 @@ async function handleSubmit() {
         const templateParams = {
             rating: selectedRating,
             rating_description: ratingDescriptions[selectedRating],
-            customerName: customerName,
             tags: selectedTags.length > 0 ? selectedTags.join(', ') : 'None selected',
             feedback: feedbackText.value.trim() || 'No additional comments',
             customerName: customerName.value,
             timestamp: new Date().toLocaleString(),
-            user_agent: navigator.userAgent
         };
-        
         console.log(templateParams);
-        return;
-        
+        // return;
         // Send email using EmailJS
         const response = await emailjs.send(
-            'YOUR_SERVICE_ID', // Replace with your EmailJS Service ID
-            'YOUR_TEMPLATE_ID', // Replace with your EmailJS Template ID
+            emailSettings.serviceId, // Replace with your EmailJS Service ID
+            emailSettings.templateId, // Replace with your EmailJS Template ID
             templateParams
         );
         
@@ -279,6 +281,7 @@ function resetForm() {
     
     // Reset textarea
     feedbackText.value = '';
+    customerName.value = '';
     updateCharCount();
     contractTextarea();
     
@@ -466,6 +469,7 @@ feedbackText.addEventListener('input', () => {
             rating: selectedRating,
             tags: selectedTags,
             feedback: feedbackText.value,
+            customerName: customerName.value,
             timestamp: Date.now()
         };
         localStorage.setItem('feedbackDraft', JSON.stringify(draft));
@@ -486,6 +490,8 @@ window.addEventListener('load', () => {
                 selectedRating = draft.rating;
                 selectedTags = draft.tags;
                 feedbackText.value = draft.feedback;
+                customerName.value = draft.customerName;
+
                 
                 updateStarDisplay();
                 updateRatingText();
