@@ -11,6 +11,7 @@ const faStar = document.querySelectorAll('.fa-star');
 const ratingText = document.getElementById('ratingText');
 const tags = document.querySelectorAll('.tag');
 const feedbackText = document.getElementById('feedbackText');
+const customerName = document.getElementById('customerName');
 const charCount = document.getElementById('charCount');
 const submitBtn = document.getElementById('submitBtn');
 const successModal = document.getElementById('successModal');
@@ -37,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupStarRating();
     setupFeedbackTags();
     setupTextarea();
+    // setupCustomerName();
     setupMobileMenu();
     setupFormValidation();
     setupAnimations();
@@ -48,7 +50,7 @@ function setupStarRating() {
         // console.log('star',star);
         // console.log('index',index);
         
-        star.addEventListener('click', () => selectRating(index));
+        star.addEventListener('click', () => selectRating(index+1));
         star.addEventListener('mouseenter', () => previewRating(index + 1));
         star.addEventListener('mouseleave', () => clearPreview());
     });
@@ -139,6 +141,11 @@ function setupTextarea() {
     feedbackText.addEventListener('focus', expandTextarea);
     feedbackText.addEventListener('blur', contractTextarea);
 }
+function setupCustomerName() {
+    customerName.addEventListener('input', updateCharCount);
+    customerName.addEventListener('focus', expandTextarea);
+    customerName.addEventListener('blur', contractTextarea);
+}
 
 function updateCharCount() {
     const currentLength = feedbackText.value.length;
@@ -191,14 +198,24 @@ async function handleSubmit() {
     
     try {
         // Prepare email template parameters
+        
+        if(customerName.value.length === 0 ){
+            showNotification('Failed to send feedback. Please fill up the Customer Name.', 'error');
+            return;
+        }
         const templateParams = {
             rating: selectedRating,
             rating_description: ratingDescriptions[selectedRating],
+            customerName: customerName,
             tags: selectedTags.length > 0 ? selectedTags.join(', ') : 'None selected',
             feedback: feedbackText.value.trim() || 'No additional comments',
+            customerName: customerName.value,
             timestamp: new Date().toLocaleString(),
             user_agent: navigator.userAgent
         };
+        
+        console.log(templateParams);
+        return;
         
         // Send email using EmailJS
         const response = await emailjs.send(
@@ -215,7 +232,6 @@ async function handleSubmit() {
         }
         
     } catch (error) {
-        console.error('Error sending feedback:', error);
         showNotification('Failed to send feedback. Please try again.', 'error');
     } finally {
         isSubmitting = false;
