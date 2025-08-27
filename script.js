@@ -37,6 +37,8 @@ function toggleMobileMenu() {
 
 // Smooth Scroll Function
 function scrollToSection(sectionId) {
+    console.log();
+    
     if(sectionId === 'feedback'){
         window.location="feedback.html"
     }
