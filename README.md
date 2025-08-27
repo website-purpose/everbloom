@@ -77,7 +77,7 @@ everbloom/
 ├── feedback-styles.css    # Styling and animations
 ├── feedback.js           # Interactive functionality
 ├── assets/               # Images and logos
-└── README-feedback.md    # This file
+└── README.md    # This file
 ```
 
 ## Customization
