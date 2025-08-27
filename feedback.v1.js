@@ -12,7 +12,10 @@ emailjs.init(emailSettings.publicKey); // Replace with your actual EmailJS User 
 
 // DOM Elements
 const stars = document.querySelectorAll('.star');
-const faStar = document.querySelectorAll('.fa-star');
+const star5 = document.querySelectorAll('.icon-star-5');
+const starSolid = document.querySelectorAll('.star-solid');
+
+
 // const iconRating = 
 const ratingText = document.getElementById('ratingText');
 const tags = document.querySelectorAll('.tag');
@@ -44,15 +47,23 @@ document.addEventListener('DOMContentLoaded', function() {
     setupStarRating();
     setupFeedbackTags();
     setupTextarea();
+    // setupCustomerName();
     setupMobileMenu();
     setupFormValidation();
     setupAnimations();
+    // resetForm();
+    console.log('star5',star5[0].classList);
+    
+
+    
 
 });
 
 // Star Rating System
 function setupStarRating() {
     stars.forEach((star, index) => {
+        // console.log('star',star);
+        // console.log('index',index);
         
         star.addEventListener('click', () => selectRating(index+1));
         star.addEventListener('mouseenter', () => previewRating(index + 1));
@@ -66,11 +77,20 @@ function selectRating(rating) {
     updateStarDisplay();
     updateRatingText();
     updateSubmitButton();
+    
+    // Add animation to selected star
+    const selectedStar = stars[rating];
+    // console.log('selectedStar',selectedStar.classList)
+    selectedStar.classList.add('active');
+
+    setTimeout(() => {
+        selectedStar.classList.remove('active');
+    }, 600);
 }
 
 function previewRating(rating) {
     if (selectedRating === 0) {
-        updateStarDisplay(rating);
+        // updateStarDisplay(rating);
         updateRatingText(rating);
     }
 }
@@ -83,19 +103,28 @@ function clearPreview() {
 }
 
 function updateStarDisplay(rating = selectedRating) {
+    
+    // star5[0].classList.remove('fa-regular');
+    // star5[0].classList.add('fa-solid');
+
+   
     stars.forEach((star, index) => {
         if (index < rating) {
-            console.log('true',index);
-            console.log('true',rating);
-            // star.classList.add('filled');
-            star.style.color='#f59e0b';
+            console.log('index',index);
+            console.log('rating',rating);
+            // star.classList.remove('fa-solid fa-star fa-lg');
+            // star.classList.add('fa-regular fa-star fa-lg');
+            console.log('starSolid', star.style.color='red');
         } else {
-            star.style.color='';
-            console.log('false',index);
-            console.log('false',rating);
-            // star.classList.remove('filled');
+            console.log('starSolid', star.style.color='black');
+            // console.log('starSolid', starSolid[0].style.display='none');
+
+            // star.classList.add('fa-solid fa-star fa-lg');
+            // star.classList.remove('fa-regular fa-star fa-lg');
         }
     });
+
+   
 }
 
 function updateRatingText(rating = selectedRating) {
