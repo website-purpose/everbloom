@@ -195,6 +195,10 @@ async function handleSubmit() {
             showNotification('Failed to send feedback. Please fill up the Customer Name.', 'error');
             return;
         }
+        if (feedbackText.value.trim().length > 0 && feedbackText.value.trim().length < 10) {
+            showNotification('Please provide more detailed feedback (at least 10 characters)', 'warning');
+            return;
+        }
         const templateParams = {
             rating: selectedRating,
             rating_description: ratingDescriptions[selectedRating],
@@ -441,6 +445,7 @@ document.addEventListener('keydown', (e) => {
 feedbackText.addEventListener('blur', () => {
     if (feedbackText.value.trim().length > 0 && feedbackText.value.trim().length < 10) {
         showNotification('Please provide more detailed feedback (at least 10 characters)', 'warning');
+        return;        
     }
 });
 
