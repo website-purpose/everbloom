@@ -85,15 +85,9 @@ function clearPreview() {
 function updateStarDisplay(rating = selectedRating) {
     stars.forEach((star, index) => {
         if (index < rating) {
-            console.log('true',index);
-            console.log('true',rating);
-            // star.classList.add('filled');
             star.style.color='#f59e0b';
         } else {
             star.style.color='';
-            console.log('false',index);
-            console.log('false',rating);
-            // star.classList.remove('filled');
         }
     });
 }
@@ -209,8 +203,6 @@ async function handleSubmit() {
             customerName: customerName.value,
             timestamp: new Date().toLocaleString(),
         };
-        console.log(templateParams);
-        // return;
         // Send email using EmailJS
         const response = await emailjs.send(
             emailSettings.serviceId, // Replace with your EmailJS Service ID
